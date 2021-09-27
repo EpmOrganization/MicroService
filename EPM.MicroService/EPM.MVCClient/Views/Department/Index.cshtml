@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using EPM.Model.Dto.Response.DeptResponse;
+@model IEnumerable<DeptResponseDto>
+
+<h1>部门管理</h1>
+<h1>url地址：@ViewData["url"]</h1>
+<div class="row">
+    <div class="col-md-10 offset-md-2">
+        <table class="table">
+            <tr>
+                <th>部门名称</th>
+            </tr>
+            @Html.DisplayForModel()
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-2">
+        <a asp-action="Add">添加部门</a>
+    </div>
+</div>
+<p>
+    @ViewData.Model.Count()
+</p>
+

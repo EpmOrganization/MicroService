@@ -57,7 +57,7 @@ namespace EPM.MVCClient.Controllers
             var listServices = new List<string>();
             foreach (var service in queryResult.Response)
             {
-                listServices.Add(service.ServiceAddress + ":" + service.ServicePort);
+                listServices.Add(service.ServiceMeta["Scheme"]+"://"+ service.ServiceAddress + ":" + service.ServicePort);
             }
             HttpClient httpClient = _httpClientFactory.CreateClient();
             // 获取一个随机数

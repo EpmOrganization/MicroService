@@ -6,6 +6,8 @@ using EPM.UserMicroService.Repositories;
 using EPM.UserMicroService.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -80,12 +82,23 @@ namespace EPM.UserMicroService
 
             #region 使用consul服务注册
 
+            // 获取服务地址
+            var features = app.Properties["server.Features"] as FeatureCollection;
+            var address = features.Get<IServerAddressesFeature>().Addresses.First();
+            var uri = new Uri(address);
+            // 获取Scheme
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("Scheme", uri.Scheme);
+
+
             // 1、创建consul客户端连接
             var consulClient = new ConsulClient(configuration =>
             {
                 //1.1 建立客户端和服务端连接
                 configuration.Address = new Uri(ServiceRegistryConfig.ConsulRegistryAddress);
             });
+
+      
 
             // 2、创建consul服务注册对象
             var registration = new AgentServiceRegistration()
@@ -95,10 +108,11 @@ namespace EPM.UserMicroService
                 // 服务名字，做集群的时候根据服务名字获取所有的服务地址集合
                 Name = ServiceRegistryConfig.Name,
                 // 服务地址
-                Address = ServiceRegistryConfig.Address,
+                Address = uri.Host,
                 // 服务端口
-                Port = ServiceRegistryConfig.Port,
-                Tags = null,
+                Port = uri.Port,
+                Tags = new[] { "UserService" },
+                Meta = dict,
                 // 健康检查
                 Check = new AgentServiceCheck
                 {
@@ -107,7 +121,7 @@ namespace EPM.UserMicroService
                     // 3.2、服务停止5秒后注销服务
                     DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(5),
                     // 3.3、consul健康检查地址
-                    HTTP =$"{ServiceRegistryConfig.Address}:{ServiceRegistryConfig.Port}{ServiceRegistryConfig.HealthCheckAddress}" ,
+                    HTTP = $"{uri.Scheme}://{uri.Host}:{uri.Port}{ServiceRegistryConfig.HealthCheckAddress}",
                     // 3.4 consul健康检查间隔时间
                     Interval = TimeSpan.FromSeconds(10),
                 }

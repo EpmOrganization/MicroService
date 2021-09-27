@@ -1,0 +1,10 @@
+﻿@model EPM.Model.DbModel.Department
+
+<tr>
+    <td>@Model.Name</td>
+    <td>
+        <a asp-controller="Department" asp-action="Update" asp-route-id="@Model.ID">
+            修改部门
+        </a>
+    </td>
+    </tr>

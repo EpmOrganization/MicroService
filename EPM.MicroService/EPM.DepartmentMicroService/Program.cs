@@ -1,4 +1,5 @@
 using Consul;
+using EPM.Core.Registry;
 using EPM.DepartmentMicroService;
 using EPM.DepartmentMicroService.Context;
 using EPM.DepartmentMicroService.Repositories;
@@ -55,8 +56,6 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EPM.Departm
 app.UseHttpsRedirection();
 
 #region 使用consul服务注册
-
-var t = app.Urls.ToList();
 
 //builder.Build().MapDynamicPageRoute]]
 //// 获取服务地址
@@ -118,11 +117,14 @@ var t = app.Urls.ToList();
 //    consulClient.Agent.ServiceDeregister(registration.ID).Wait();//服务停止时取消注册
 //});
 
-app.UseConsul(builder.Configuration);
+//app.UseConsul(builder.Configuration);
 
 
 #endregion
 
+#region 通过中间件使用consul的服务注册
+app.UseConsulRegistry(builder.Configuration);
+#endregion
 
 app.UseAuthorization();
 

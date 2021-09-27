@@ -20,8 +20,8 @@ namespace EPM.Core.Extentions.MicroServiceExtentions
             services.Configure<ServiceRegistryConfig>(configuration.GetSection("ConsulRegistry"));
 
             // services.con
-            // 2、注册consul注册 单例生命周期
-            services.AddSingleton<IServiceRegistry, ConsulServiceRegistry>();
+            //// 2、注册consul注册 单例生命周期
+            //services.AddSingleton<IServiceRegistry, ConsulServiceRegistry>();
             return services;
         }
     }

@@ -1,3 +1,7 @@
+using EPM.Core.Discovery;
+using EPM.Core.HttpClientConsul.Extentions;
+using EPM.Core.ServiceBase;
+using EPM.Model.ConfigModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +29,18 @@ namespace EPM.MVCClient
         {
             // 使用HttpClientFactory
             services.AddHttpClient();
+
+            #region 服务发现
+            //services.AddScoped<IServiceDiscovery, ConsulServiceDiscovery>();
+            services.AddHttpClientConsul();
+            #endregion
+
+
+            services.Configure<UserServiceConfig>(Configuration.GetSection("UserServiceConfig"));
+            services.Configure<DeptServiceConfig>(Configuration.GetSection("DeptServiceConfig"));
+
+            // 写在最后面,否则会导致写在这行代码后面的注入获取不到
+            ServiceFactory.Services = services;
             services.AddControllersWithViews();
         }
 

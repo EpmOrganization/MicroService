@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EPM.Core\EPM.Core.csproj" />
     <ProjectReference Include="..\EPM.Model\EPM.Model.csproj" />
   </ItemGroup>
 

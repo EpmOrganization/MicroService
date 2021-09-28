@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace EPM.UserMicroService.Controllers
 {
@@ -12,7 +13,7 @@ namespace EPM.UserMicroService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            System.Console.WriteLine("UserService is ok");
+             Console.WriteLine("UserService is ok");
              return Ok("UserService is ok");
         }
     }

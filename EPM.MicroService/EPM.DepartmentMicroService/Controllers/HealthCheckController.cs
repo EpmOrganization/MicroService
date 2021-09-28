@@ -13,8 +13,8 @@ namespace EPM.DepartmentMicroService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            System.Console.WriteLine("UserService is ok");
-            return Ok("UserService is ok");
+            Console.WriteLine("DepartService is ok");
+            return Ok("DepartService is ok");
         }
     }
 }

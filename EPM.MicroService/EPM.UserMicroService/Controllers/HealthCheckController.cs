@@ -13,7 +13,7 @@ namespace EPM.UserMicroService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-             Console.WriteLine("UserService is ok");
+             //Console.WriteLine("UserService is ok");
              return Ok("UserService is ok");
         }
     }

@@ -21,7 +21,7 @@ namespace EPM.Model.DbModel
         /// <summary>
         /// 父级半选状态
         /// </summary>
-        public string HalfCheckeds { get; set; }
+        public string? HalfCheckeds { get; set; }
 
         /// <summary>
         /// 这个值是从前端带过来的，表示创建的角色所拥有的菜单id集合

@@ -4,29 +4,29 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace EPM.DepartmentMicroService.Repositories
+namespace EPM.RoleMicroService.Repositories
 {
-    public interface IDepartmentRepository
+    public interface IRoleRepository
     {
         /// <summary>
         /// 新增
         /// </summary>
         /// <param name="entity"></param>
-        Task<int> Add(Department entity);
+        Task<int> Add(Role entity);
 
         /// <summary>
         /// 更新、删除
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<int> Update(Department entity, Expression<Func<Department, object>>[] updatedProperties);
+        Task<int> Update(Role entity, Expression<Func<Role, object>>[] updatedProperties);
 
         /// <summary>
         /// 获取单个实体（条件）
         /// </summary>
         /// <param name="predicate">条件表达式</param>
         /// <returns></returns>
-        Task<Department> GetEntityAsync(Expression<Func<Department, bool>> predicate);
+        Task<Role> GetEntityAsync(Expression<Func<Role, bool>> predicate);
 
         /// <summary>
         /// 根据条件获取集合数据
@@ -34,6 +34,6 @@ namespace EPM.DepartmentMicroService.Repositories
         /// <typeparam name="TKey"></typeparam>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<IEnumerable<Department>> GetAllListAsync(Expression<Func<Department, bool>> predicate);
+        Task<IEnumerable<Role>> GetAllListAsync(Expression<Func<Role, bool>> predicate);
     }
 }

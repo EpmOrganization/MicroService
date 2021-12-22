@@ -2,8 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace EPM.DepartmentMicroService.Context
+namespace EPM.RoleMicroService.Context
 {
+    /// <summary>
+    /// 数据上下文类，继承自DbContext
+    /// </summary>
     public class AppDbContext : DbContext
     {
         /// <summary>
@@ -19,7 +22,7 @@ namespace EPM.DepartmentMicroService.Context
         /// <summary>
         /// 用户表
         /// </summary>
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         #endregion
 
@@ -28,7 +31,7 @@ namespace EPM.DepartmentMicroService.Context
             #region 填充种子数据
 
             // 填充用户数据
-            modelBuilder.Entity<Department>().HasData(new Department()
+            modelBuilder.Entity<Role>().HasData(new Role()
             {
                 ClusterID = 1,
                 ID = Guid.NewGuid(),
@@ -36,8 +39,7 @@ namespace EPM.DepartmentMicroService.Context
                 UpdateUser = "系统管理员",
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now,
-                Name = "技术中心",
-                ParentID = Guid.Empty
+                Name = "系统管理员",
             });
             #endregion
             base.OnModelCreating(modelBuilder);

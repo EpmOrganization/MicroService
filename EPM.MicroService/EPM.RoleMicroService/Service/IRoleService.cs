@@ -1,27 +1,26 @@
 ﻿using EPM.Model.ApiModel;
 using EPM.Model.DbModel;
-using EPM.Model.Dto.Response.DeptResponse;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EPM.DepartmentMicroService.Service
+namespace EPM.RoleMicroService.Service
 {
-    public interface IDepartmentService
+    public interface IRoleService
     {
         /// <summary>
         /// 增加
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<ValidateResult> AddAsync(Department entity);
+        Task<ValidateResult> AddAsync(Role entity);
 
         /// <summary>
         /// 更新
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<ValidateResult> UpdateAsync(Department entity);
+        Task<ValidateResult> UpdateAsync(Role entity);
 
         /// <summary>
         /// 删除
@@ -30,6 +29,6 @@ namespace EPM.DepartmentMicroService.Service
         /// <returns></returns>
         Task<ValidateResult> DeleteAsync(Guid id);
 
-        Task<IEnumerable<DeptResponseDto>> GetListAsync();
+        Task<IEnumerable<Role>> GetListAsync();
     }
 }

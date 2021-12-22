@@ -1,6 +1,6 @@
 using System;
 
-namespace EPM.DepartmentMicroService
+namespace EPM.RoleMicroService
 {
     public class WeatherForecast
     {

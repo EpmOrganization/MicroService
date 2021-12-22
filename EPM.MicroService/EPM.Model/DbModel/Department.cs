@@ -25,6 +25,6 @@ namespace EPM.Model.DbModel
         /// <summary>
         /// 记录选择的父级
         /// </summary>
-        public string Dep { get; set; }
+        public string? Dep { get; set; }
     }
 }

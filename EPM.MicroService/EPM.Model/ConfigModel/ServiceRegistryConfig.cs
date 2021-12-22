@@ -12,22 +12,22 @@ namespace EPM.Model.ConfigModel
     public class ServiceRegistryConfig
     {
         // 服务ID
-        public string Id { get; set; }
+        public string ServiceId { get; set; }
 
         // 服务名称
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
 
-        // 服务标签(版本)
-        public string[] Tags { set; get; }
+        //// 服务标签(版本)
+        //public string[] Tags { set; get; }
 
-        // 服务地址(可以选填 === 默认加载启动路径)
-        public string Address { set; get; }
+        //// 服务地址(可以选填 === 默认加载启动路径)
+        //public string Address { set; get; }
 
-        // 服务端口号(可以选填 === 默认加载启动路径端口)
-        public int Port { set; get; }
+        //// 服务端口号(可以选填 === 默认加载启动路径端口)
+        //public int Port { set; get; }
 
         // 服务注册地址（即向consul进行注册的consul地址）
-        public string ConsulRegistryAddress { get; set; }
+        public string ConsulAddress { get; set; }
 
         // 服务健康检查地址
         public string HealthCheckAddress { get; set; }

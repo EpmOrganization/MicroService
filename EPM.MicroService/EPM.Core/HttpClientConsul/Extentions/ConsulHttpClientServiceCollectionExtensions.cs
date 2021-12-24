@@ -1,11 +1,11 @@
-﻿using EPM.Core.Cluster;
-using EPM.Core.Discovery;
+﻿using EPM.Core.Discovery;
+using EPM.Core.LoadBalance;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EPM.Core.HttpClientConsul.Extentions
 {
     /// <summary>
-    /// HttpClientFactory conusl下的扩展
+    /// HttpClientFactory结合consul服务发现进行扩展
     /// </summary>
     public static class ConsulHttpClientServiceCollectionExtensions
     {

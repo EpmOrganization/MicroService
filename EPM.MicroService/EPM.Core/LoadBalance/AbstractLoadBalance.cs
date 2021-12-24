@@ -1,11 +1,9 @@
 ﻿using EPM.Model.ApiModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace EPM.Core.Cluster
+namespace EPM.Core.LoadBalance
 {
     /// <summary>
     /// 负载均衡抽象实现
@@ -22,10 +20,11 @@ namespace EPM.Core.Cluster
         }
 
         /// <summary>
-        /// 子类去实现
+        /// 具体的子类根据不同负载均衡算法去实现
+        /// 访问修饰符是protected的
         /// </summary>
-        /// <param name="serviceUrls"></param>
+        /// <param name="serviceUrls">服务列表</param>
         /// <returns></returns>
-        public abstract ServiceUrl DoSelect(List<ServiceUrl> serviceUrls);
+        protected abstract ServiceUrl DoSelect(List<ServiceUrl> serviceUrls);
     }
 }

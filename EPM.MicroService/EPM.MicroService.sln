@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.RoleMicroService", "EPM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.DepartmentMicroService", "EPM.DepartmentMicroService\EPM.DepartmentMicroService.csproj", "{84405426-0824-4354-BD11-A63F4459BE14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.Console", "EPM.Console\EPM.Console.csproj", "{6560FC2E-C386-4C99-877D-91262946F69B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{84405426-0824-4354-BD11-A63F4459BE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84405426-0824-4354-BD11-A63F4459BE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84405426-0824-4354-BD11-A63F4459BE14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6560FC2E-C386-4C99-877D-91262946F69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6560FC2E-C386-4C99-877D-91262946F69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6560FC2E-C386-4C99-877D-91262946F69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6560FC2E-C386-4C99-877D-91262946F69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{5B7C6EAB-C4B4-42B3-B95B-2414BFAEDE13} = {5251AA80-824E-441F-AFFC-80E67B93EEA3}
 		{8018C4DC-400F-4F81-99D3-19DE8BF8296E} = {5251AA80-824E-441F-AFFC-80E67B93EEA3}
 		{84405426-0824-4354-BD11-A63F4459BE14} = {5251AA80-824E-441F-AFFC-80E67B93EEA3}
+		{6560FC2E-C386-4C99-877D-91262946F69B} = {C3750A86-2596-49CE-9E25-5ED87BA2CCBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13964F51-2AEB-4E30-B78A-01079CF18735}

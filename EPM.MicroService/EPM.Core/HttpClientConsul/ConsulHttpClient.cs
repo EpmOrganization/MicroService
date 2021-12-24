@@ -1,5 +1,5 @@
-﻿using EPM.Core.Cluster;
-using EPM.Core.Discovery;
+﻿using EPM.Core.Discovery;
+using EPM.Core.LoadBalance;
 using EPM.Model.ApiModel;
 using Newtonsoft.Json;
 using System;

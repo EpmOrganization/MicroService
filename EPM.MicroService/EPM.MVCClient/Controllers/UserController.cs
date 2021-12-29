@@ -82,10 +82,10 @@ namespace EPM.MVCClient.Controllers
             #endregion
 
             #region 封装consul服务发现
-            // 获取appsettings.json配置
+            // 获取配置
             var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
             List<User> list = new List<User>();
-            var result =await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.Scheme,userServiceConfig.ServiceName,userServiceConfig.GetUri);
+            var result =await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.ServiceName,userServiceConfig.GetUri);
             if(result!=null)
             {
                 list = result.Data;

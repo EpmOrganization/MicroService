@@ -1,7 +1,10 @@
 ﻿using Consul;
+using EPM.Core.ServiceBase;
 using EPM.Model.ApiModel;
 using EPM.Model.ConfigModel;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,14 +29,8 @@ namespace EPM.Core.Discovery
 
         public async Task<List<ServiceUrl>> Discovery(string serviceName)
         {
-
-            var file = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Settings"), "service.discover.json");
-            // 读取配置文件
-            var config = new ConfigurationBuilder().AddJsonFile(file[0], false, true).Build();
-
-            // 绑定配置信息
-            ServiceDiscoveryConfig serviceDiscoveryConfig = new ServiceDiscoveryConfig();
-            config.GetSection("ConsulDiscovery").Bind(serviceDiscoveryConfig);
+            //// 绑定配置信息
+            var serviceDiscoveryConfig = ServiceFactory.ServiceProvider.GetService<IOptions<ServiceDiscoveryConfig>>().Value;
 
             // 1、创建consul客户端连接
             var consulClient = new ConsulClient(configuration =>
@@ -42,16 +39,13 @@ namespace EPM.Core.Discovery
                 configuration.Address = new Uri(serviceDiscoveryConfig.RegistryAddress);
             });
 
-            //// 2、consul查询服务,根据具体的服务名称查询
-            //var queryResult = await consulClient.Catalog.Service(serviceName);
-
-            // Health 当前consul里已经注册的服务，健康检查的信息也获取
+            //// 2、consul查询服务,根据具体的服务名称查询  Health 当前consul里已经注册的服务，健康检查的信息也获取
             var queryResult = await consulClient.Health.Service(service: serviceName,"",passingOnly: true);
             // 3、将服务进行拼接
             var list = new List<ServiceUrl>();
             foreach (var service in queryResult.Response)
             {
-                list.Add(new ServiceUrl { Url = service.Service.Address + ":" + service.Service.Port });
+                list.Add(new ServiceUrl { Url = $"{service.Service.Meta["Scheme"]}://{service.Service.Address}:{service.Service.Port}"});
             }
             return list;
         }

@@ -43,7 +43,7 @@ namespace EPM.DepartmentMicroService
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             #endregion
 
-            services.AddConsul();
+            services.AddConsul(Configuration);
             services.AddControllers();
         }
 

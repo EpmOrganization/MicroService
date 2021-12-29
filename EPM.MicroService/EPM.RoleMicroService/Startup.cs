@@ -42,7 +42,7 @@ namespace EPM.RoleMicroService
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             #endregion
-            services.AddConsul();
+            services.AddConsul(Configuration);
             services.AddControllers();
         }
 

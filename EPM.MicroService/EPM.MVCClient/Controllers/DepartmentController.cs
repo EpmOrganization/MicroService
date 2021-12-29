@@ -83,7 +83,7 @@ namespace EPM.MVCClient.Controllers
             // 获取appsettings.json配置
             var serviceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<DeptServiceConfig>>().Value;
             List<DeptResponseDto> list = new List<DeptResponseDto>();
-            var result = await _consulHttpClient.GetAsync<ApiResponseWithData<List<DeptResponseDto>>>(serviceConfig.Scheme, serviceConfig.ServiceName, serviceConfig.GetUri);
+            var result = await _consulHttpClient.GetAsync<ApiResponseWithData<List<DeptResponseDto>>>(serviceConfig.ServiceName, serviceConfig.GetUri);
             if (result != null)
             {
                 list = result.Data;

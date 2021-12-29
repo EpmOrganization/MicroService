@@ -45,7 +45,8 @@ namespace EPM.UserMicroService
 
             services.AddControllers();
             // 添加consul注册中心，加载配置
-            services.AddConsul();
+            services.AddConsul(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

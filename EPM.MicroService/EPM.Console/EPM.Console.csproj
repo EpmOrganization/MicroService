@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Settings\service.discover.json" />
+    <None Remove="Settings\service.settings.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Settings\service.discover.json">
+    <Content Include="Settings\service.settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

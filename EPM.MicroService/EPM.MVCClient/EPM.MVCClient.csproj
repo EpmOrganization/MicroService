@@ -18,4 +18,10 @@
     <ProjectReference Include="..\EPM.Model\EPM.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Settings\service.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

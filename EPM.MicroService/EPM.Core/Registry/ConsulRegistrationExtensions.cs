@@ -25,12 +25,10 @@ namespace EPM.Core.Registry
         /// 扩展IServiceCollection
         /// </summary>
         /// <param name="services"></param>
-        public static void AddConsul(this IServiceCollection services)
+        public static IServiceCollection AddConsul(this IServiceCollection services, IConfiguration configuration)
         {
-            var file = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Settings"), "service.config.json");
-            // 读取配置文件
-            var config = new ConfigurationBuilder().AddJsonFile(file[0],false,true).Build();
-            services.Configure<ServiceRegistryConfig>(config);
+            services.Configure<ServiceRegistryConfig>(configuration.GetSection("ConsulRegistry"));
+            return services;
         }
 
         public static IApplicationBuilder UseConsul(this IApplicationBuilder app)
@@ -56,6 +54,8 @@ namespace EPM.Core.Registry
             var address = features.Get<IServerAddressesFeature>().Addresses.First();
             var uri=new Uri(address);
 
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("Scheme",uri.Scheme);
             // 2、创建consul服务注册对象
             var registration = new AgentServiceRegistration()
             {
@@ -78,7 +78,8 @@ namespace EPM.Core.Registry
                     HTTP = $"{uri.Scheme}://{uri.Host}:{uri.Port}{serviceOptions.HealthCheckAddress}",
                     // consul健康检查间隔时间  10秒检查一次
                     Interval = TimeSpan.FromSeconds(10),
-                }
+                },
+                Meta =dict
             };
 
 #if DEBUG

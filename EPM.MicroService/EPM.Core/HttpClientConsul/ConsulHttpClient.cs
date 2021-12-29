@@ -31,11 +31,11 @@ namespace EPM.Core.HttpClientConsul
         /// Get方法
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// param name="ServiceSchme">Scheme:(http/https)</param>
-        /// <param name="ServiceName">服务名称</param>
+        /// <param name="serviceName">服务名称</param>
         /// <param name="serviceLink">服务路径</param>
         /// <returns></returns>
-        public async Task<T> GetAsync<T>(string serviceScheme, string serviceName, string serviceLink)
+        /// <exception cref="Exception"></exception>
+        public async Task<T> GetAsync<T>(string serviceName, string serviceLink)
         {
             // 1、通过consul服务发现获取所有的服务地址
             List<ServiceUrl> serviceUrls = await serviceDiscovery.Discovery(serviceName);
@@ -43,9 +43,9 @@ namespace EPM.Core.HttpClientConsul
             // 2、负载均衡服务
             ServiceUrl serviceUrl = loadBalance.Select(serviceUrls);
 
-            // 3、建立请求
+            // 3、建立httpclient请求
             HttpClient httpClient = httpClientFactory.CreateClient();
-            HttpResponseMessage response = await httpClient.GetAsync(serviceScheme + "://" + serviceUrl.Url + serviceLink);
+            HttpResponseMessage response = await httpClient.GetAsync(serviceUrl.Url + serviceLink);
 
             // 3.1json转换成对象
             if (response.StatusCode == HttpStatusCode.OK)

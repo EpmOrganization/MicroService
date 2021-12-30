@@ -87,8 +87,6 @@ namespace EPM.MVCClient.Controllers
             #endregion
 
             #region 封装consul服务发现
-            try
-            {
                 // 获取配置
                 var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
                 List<User> list = new List<User>();
@@ -97,18 +95,10 @@ namespace EPM.MVCClient.Controllers
                 {
                     list = result.Data;
                 }
-
-                return View(list);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
             #endregion
 
-            return View();
+
+            return View(list);
         }
 
         // GET: UserController1/Details/5

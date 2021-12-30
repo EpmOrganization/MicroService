@@ -33,7 +33,7 @@ namespace EPM.MVCClient
             #region 服务发现
             //services.AddScoped<IServiceDiscovery, ConsulServiceDiscovery>();
             services.Configure<ServiceDiscoveryConfig>(Configuration.GetSection("ConsulDiscovery"));
-            services.AddHttpClientConsul();
+            services.AddHttpClientConsul(Configuration);
             #endregion
 
 

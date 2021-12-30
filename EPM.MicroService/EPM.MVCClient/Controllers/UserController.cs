@@ -1,12 +1,14 @@
 ﻿using Consul;
 using EPM.Core.Discovery;
 using EPM.Core.HttpClientConsul;
+using EPM.Core.LoadBalance;
 using EPM.Core.ServiceBase;
 using EPM.Model.ApiModel;
 using EPM.Model.ConfigModel;
 using EPM.Model.DbModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -23,11 +25,14 @@ namespace EPM.MVCClient.Controllers
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConsulHttpClient _consulHttpClient;
+        private readonly IConfiguration _configuration;
 
-        public UserController(IHttpClientFactory httpClientFactory, IConsulHttpClient consulHttpClient)
+        public UserController(IHttpClientFactory httpClientFactory, IConsulHttpClient consulHttpClient,
+            IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
             _consulHttpClient = consulHttpClient;
+            _configuration = configuration;
         }
 
         // GET: UserController1
@@ -93,7 +98,6 @@ namespace EPM.MVCClient.Controllers
 
             #endregion
 
-            //ViewData["url"] = listServices[index];
             return View(list);
         }
 

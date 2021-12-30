@@ -87,18 +87,28 @@ namespace EPM.MVCClient.Controllers
             #endregion
 
             #region 封装consul服务发现
-            // 获取配置
-            var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
-            List<User> list = new List<User>();
-            var result =await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.ServiceName,userServiceConfig.GetUri);
-            if(result!=null)
+            try
             {
-                list = result.Data;
+                // 获取配置
+                var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
+                List<User> list = new List<User>();
+                var result = await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.ServiceName, userServiceConfig.GetUri);
+                if (result != null)
+                {
+                    list = result.Data;
+                }
+
+                return View(list);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
             #endregion
 
-            return View(list);
+            return View();
         }
 
         // GET: UserController1/Details/5

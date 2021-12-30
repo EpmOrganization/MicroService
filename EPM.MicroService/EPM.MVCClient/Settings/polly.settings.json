@@ -1,0 +1,8 @@
+{
+  "PollyConfig": {
+    "TimeoutTime": 1, // 1、超时时间
+    "RetryCount": 3, // 2、重试次数
+    "CircuitBreakerOpenFallCount": 2, // 3、熔断器开启(多少次失败开启)
+    "CircuitBreakerDownTime": 100 // 4、熔断器开启时间
+  }
+}

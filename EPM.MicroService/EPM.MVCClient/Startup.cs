@@ -38,12 +38,12 @@ namespace EPM.MVCClient
             };
 
             // 使用HttpClientFactory
-            services.AddHttpClient();
+            //services.AddHttpClient();
 
             #region 服务发现
             //services.AddScoped<IServiceDiscovery, ConsulServiceDiscovery>();
             services.Configure<ServiceDiscoveryConfig>(Configuration.GetSection("ConsulDiscovery"));
-            services.AddHttpClientConsul(Configuration);
+            //services.AddHttpClientConsul(Configuration);
             #endregion
 
 
@@ -61,7 +61,7 @@ namespace EPM.MVCClient
                 options.CircuitBreakerOpenFallCount = pollyConfig.CircuitBreakerOpenFallCount;// 3、熔断器开启(多少次失败开启)
                 options.CircuitBreakerDownTime = pollyConfig.CircuitBreakerDownTime;// 4、熔断器开启时间
                 options.httpResponseMessage = fallbackResponse;// 5、降级处理
-            });
+            }).AddHttpClientConsul(Configuration) ;
 
             // 写在最后面,否则会导致写在这行代码后面的注入获取不到
             ServiceFactory.Services = services;

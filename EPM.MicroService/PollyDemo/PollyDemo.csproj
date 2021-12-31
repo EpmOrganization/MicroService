@@ -6,7 +6,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Settings\loadbalance.settings.json" />
+    <None Remove="Settings\polly.settings.json" />
+    <None Remove="Settings\service.settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Settings\loadbalance.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Settings\polly.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Settings\service.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Polly" Version="7.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EPM.Core\EPM.Core.csproj" />
+    <ProjectReference Include="..\EPM.Model\EPM.Model.csproj" />
   </ItemGroup>
 
 </Project>

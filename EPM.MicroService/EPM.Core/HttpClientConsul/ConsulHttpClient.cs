@@ -44,7 +44,7 @@ namespace EPM.Core.HttpClientConsul
             ServiceUrl serviceUrl = loadBalance.Select(serviceUrls);
 
             // 3、建立httpclient请求
-            HttpClient httpClient = httpClientFactory.CreateClient();
+            HttpClient httpClient = httpClientFactory.CreateClient("mrico");
             HttpResponseMessage response = await httpClient.GetAsync(serviceUrl.Url + serviceLink);
 
             // 3.1json转换成对象

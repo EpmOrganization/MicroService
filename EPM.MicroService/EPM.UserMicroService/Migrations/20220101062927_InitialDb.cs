@@ -42,7 +42,7 @@ namespace EPM.UserMicroService.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "ClusterID", "CreateTime", "CreateUser", "DepartmentName", "Description", "EmailAddress", "ID", "IsDeleted", "LoginErrorCount", "LoginLockTime", "LoginName", "LoginTime", "MobileNumber", "Name", "Password", "PasswordUpdateTime", "Position", "RoleName", "Status", "UpdateTime", "UpdateUser" },
-                values: new object[] { 1, new DateTime(2021, 12, 22, 14, 9, 28, 107, DateTimeKind.Local).AddTicks(7611), "系统管理员", "技术中心", null, null, new Guid("316e60b8-89c2-4d33-a31c-8740c54a4867"), 0, 0, null, "admin", null, null, "系统管理员", "e10adc3949ba59abbe56e057f20f883e", null, null, "超级管理员", 0, new DateTime(2021, 12, 22, 14, 9, 28, 107, DateTimeKind.Local).AddTicks(8326), "系统管理员" });
+                values: new object[] { 1, new DateTime(2022, 1, 1, 14, 29, 27, 82, DateTimeKind.Local).AddTicks(8621), "系统管理员", "技术中心", null, null, new Guid("f9ea00f8-ed24-44cd-a454-0d10da52d93a"), 0, 0, null, "admin", null, null, "系统管理员", "e10adc3949ba59abbe56e057f20f883e", null, null, "超级管理员", 0, new DateTime(2022, 1, 1, 14, 29, 27, 82, DateTimeKind.Local).AddTicks(9126), "系统管理员" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

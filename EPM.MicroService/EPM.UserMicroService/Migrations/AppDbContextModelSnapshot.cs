@@ -94,10 +94,10 @@ namespace EPM.UserMicroService.Migrations
                         new
                         {
                             ClusterID = 1,
-                            CreateTime = new DateTime(2021, 12, 22, 14, 9, 28, 107, DateTimeKind.Local).AddTicks(7611),
+                            CreateTime = new DateTime(2022, 1, 1, 14, 29, 27, 82, DateTimeKind.Local).AddTicks(8621),
                             CreateUser = "系统管理员",
                             DepartmentName = "技术中心",
-                            ID = new Guid("316e60b8-89c2-4d33-a31c-8740c54a4867"),
+                            ID = new Guid("f9ea00f8-ed24-44cd-a454-0d10da52d93a"),
                             IsDeleted = 0,
                             LoginErrorCount = 0,
                             LoginName = "admin",
@@ -105,7 +105,7 @@ namespace EPM.UserMicroService.Migrations
                             Password = "e10adc3949ba59abbe56e057f20f883e",
                             RoleName = "超级管理员",
                             Status = 0,
-                            UpdateTime = new DateTime(2021, 12, 22, 14, 9, 28, 107, DateTimeKind.Local).AddTicks(8326),
+                            UpdateTime = new DateTime(2022, 1, 1, 14, 29, 27, 82, DateTimeKind.Local).AddTicks(9126),
                             UpdateUser = "系统管理员"
                         });
                 });

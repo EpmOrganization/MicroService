@@ -50,8 +50,14 @@ namespace EPM.MVCClient
             services.Configure<UserServiceConfig>(Configuration.GetSection("UserServiceConfig"));
             services.Configure<DeptServiceConfig>(Configuration.GetSection("DeptServiceConfig"));
 
-            
-            PollyConfig pollyConfig= new PollyConfig();
+            #region 注入api网关配置
+            // 
+            services.Configure<ApiGatewayConfig>(Configuration.GetSection("ApiGatewayConfig")); 
+            #endregion
+
+
+            #region Polly配置
+            PollyConfig pollyConfig = new PollyConfig();
             Configuration.GetSection("PollyConfig").Bind(pollyConfig);
 
             services.AddPollyHttpClient("mrico", options =>
@@ -61,7 +67,8 @@ namespace EPM.MVCClient
                 options.CircuitBreakerOpenFallCount = pollyConfig.CircuitBreakerOpenFallCount;// 3、熔断器开启(多少次失败开启)
                 options.CircuitBreakerDownTime = pollyConfig.CircuitBreakerDownTime;// 4、熔断器开启时间
                 options.httpResponseMessage = fallbackResponse;// 5、降级处理
-            }).AddHttpClientConsul(Configuration) ;
+            }).AddHttpClientConsul(Configuration); 
+            #endregion
 
             // 写在最后面,否则会导致写在这行代码后面的注入获取不到
             ServiceFactory.Services = services;

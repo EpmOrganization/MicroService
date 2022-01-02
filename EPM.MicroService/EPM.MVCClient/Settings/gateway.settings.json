@@ -1,0 +1,8 @@
+{
+  "ApiGatewayConfig": {
+    "ApiGateWay": "http://localhost:9010",
+    "UserMethodConfig": {
+      "GetUser": "/a/user"
+    }
+  }
+}

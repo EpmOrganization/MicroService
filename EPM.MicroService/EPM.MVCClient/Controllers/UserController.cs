@@ -87,16 +87,42 @@ namespace EPM.MVCClient.Controllers
             #endregion
 
             #region 封装consul服务发现
-                // 获取配置
-                var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
-                List<User> list = new List<User>();
-                var result = await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.ServiceName, userServiceConfig.GetUri);
-                if (result != null)
-                {
-                    list = result.Data;
-                }
+            //// 获取配置
+            //var userServiceConfig = ServiceFactory.ServiceProvider.GetService<IOptions<UserServiceConfig>>().Value;
+            //List<User> list = new List<User>();
+            //var result = await _consulHttpClient.GetAsync<ApiResponseWithData<List<User>>>(userServiceConfig.ServiceName, userServiceConfig.GetUri);
+            //if (result != null)
+            //{
+            //    list = result.Data;
+            //}
             #endregion
 
+
+            #region 加入api网关
+            //List<User> list = new List<User>();
+            //ApiGatewayConfig apiGatewayConfig=ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
+            //var httpClient = _httpClientFactory.CreateClient();
+            //string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
+            //HttpResponseMessage response = await httpClient.GetAsync(url);
+            //// 3.1json转换成对象
+            //if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            //    string json = await response.Content.ReadAsStringAsync();
+
+            //    list = JsonConvert.DeserializeObject<ApiResponseWithData<List<User>>>(json).Data;
+            //}
+            #endregion
+
+            #region consul结合api网关
+            List<User> list = new List<User>();
+            ApiGatewayConfig apiGatewayConfig = ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
+            string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
+            var result = await _consulHttpClient.GetByGatewayAsync<ApiResponseWithData<List<User>>>(url);
+            if (result != null)
+            {
+                list = result.Data;
+            }
+            #endregion
 
             return View(list);
         }

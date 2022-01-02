@@ -12,5 +12,7 @@ namespace EPM.Core.HttpClientConsul
     public interface IConsulHttpClient
     {
         Task<T> GetAsync<T>(string serviceName, string serviceLink);
+
+        Task<T> GetByGatewayAsync<T>(string url);
     }
 }

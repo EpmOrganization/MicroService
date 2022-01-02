@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Settings\gateway.settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Settings\service.settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

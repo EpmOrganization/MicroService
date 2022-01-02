@@ -59,5 +59,32 @@ namespace EPM.Core.HttpClientConsul
                 throw new Exception($"{serviceName}服务调用错误");
             }
         }
+
+        /// <summary>
+        /// Get方法获取数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<T> GetByGatewayAsync<T>(string url)
+        {
+
+            // 3、建立httpclient请求
+            HttpClient httpClient = httpClientFactory.CreateClient("mrico");
+            HttpResponseMessage response = await httpClient.GetAsync(url);
+
+            // 3.1json转换成对象
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            else
+            {
+                throw new Exception($"服务调用错误");
+            }
+        }
     }
 }

@@ -2,7 +2,9 @@
   "ApiGatewayConfig": {
     "ApiGateWay": "http://localhost:9010",
     "UserMethodConfig": {
-      "GetUser": "/a/user"
+      "GetUser": "/userservice/get/user",
+      "TestOcelot": "/userservice/testocelot",
+      "AddUser": "/userservice/post/user"
     }
   }
 }

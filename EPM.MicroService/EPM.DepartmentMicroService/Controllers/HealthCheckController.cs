@@ -14,9 +14,6 @@ namespace EPM.DepartmentMicroService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-#if DEBUG
-            Console.WriteLine("DepartService is ok");
-#endif
             return Ok("DepartService is ok");
         }
     }

@@ -30,13 +30,16 @@ namespace EPM.ApiGateway
         public void ConfigureServices(IServiceCollection services)
         {
             // 添加Ocelot
-            var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelot.json", false, true).Build();
-            services.AddOcelot(config);
+            //var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelot.json", false, true).Build();
+            //services.AddOcelot(config);
 
             // 添加Ocelot结合Consul服务发现
             //var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelotconsul.json", false, true).Build();
             //services.AddOcelot(config).AddConsul();
+
+            services.AddOcelot();
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +52,8 @@ namespace EPM.ApiGateway
 
             // 配置Ocelot中间件
             app.UseOcelot().Wait();
+
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

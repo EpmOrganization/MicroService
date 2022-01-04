@@ -38,6 +38,7 @@ namespace EPM.MVCClient.Controllers
         // GET: UserController1
         public async Task<ActionResult> Index()
         {
+            List<User> list = new List<User>();
 
             #region 普通调用方式，不利于调用集群
             //List<User> list = new List<User>();
@@ -97,10 +98,8 @@ namespace EPM.MVCClient.Controllers
             //}
             #endregion
 
-
             #region 加入api网关
-            //List<User> list = new List<User>();
-            //ApiGatewayConfig apiGatewayConfig=ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
+            //ApiGatewayConfig apiGatewayConfig = ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
             //var httpClient = _httpClientFactory.CreateClient();
             //string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
             //HttpResponseMessage response = await httpClient.GetAsync(url);
@@ -111,10 +110,18 @@ namespace EPM.MVCClient.Controllers
 
             //    list = JsonConvert.DeserializeObject<ApiResponseWithData<List<User>>>(json).Data;
             //}
+
+            //string testUrl= $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.TestOcelot}";
+            //HttpResponseMessage responseTest = await httpClient.GetAsync(testUrl);
+            //// 3.1json转换成对象
+            //if (responseTest.StatusCode == HttpStatusCode.OK)
+            //{
+            //    ViewData["url"] = await responseTest.Content.ReadAsStringAsync();
+            //}
+
             #endregion
 
             #region consul结合api网关
-            List<User> list = new List<User>();
             ApiGatewayConfig apiGatewayConfig = ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
             string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
             var result = await _consulHttpClient.GetByGatewayAsync<ApiResponseWithData<List<User>>>(url);
@@ -153,6 +160,8 @@ namespace EPM.MVCClient.Controllers
         {
             user.ID = Guid.NewGuid();
             user.CreateUser = user.UpdateUser = "admin";
+
+
             return Ok("添加成功");
         }
 

@@ -15,19 +15,10 @@ namespace EPM.UserMicroService.Controllers
     [ApiController]
     public class TestOcelotController : ControllerBase
     {
-        //private readonly IApplicationBuilder _app;
-
-        //public TestOcelotController(IApplicationBuilder app)
-        //{
-        //    _app = app;
-        //}
-
         public ActionResult Get()
         {
             // 获取当前服务地址和端口
-            //var features = _app.Properties["server.Features"] as FeatureCollection;
-
-            var features = ServiceLocator.ApplicationBuilder().Properties["server.Features"] as FeatureCollection;
+            var features = ServiceLocator.ApplicationBuilder.Properties["server.Features"] as FeatureCollection;
             var address = features.Get<IServerAddressesFeature>().Addresses.First();
             return Ok($"TestOcelot From Url:{address}");
         }

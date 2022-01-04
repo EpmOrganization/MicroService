@@ -15,6 +15,10 @@
         {
           "Host": "localhost",
           "Port": 5020
+        },
+        {
+          "Host": "localhost",
+          "Port": 5010
         }
       ],
       // 允许的HTTP请求方法，可以写多个
@@ -22,7 +26,7 @@
       // 上游（客户端，服务消费方）请求路由模板
       "UpstreamPathTemplate": "/userservice/{path}",
       // 负载均衡，只有上面匹配了集群才有效
-      "LoadBalanceOptions": {
+      "LoadBalancerOptions": {
         "Type": "RoundRobin" // 轮询
       }
     },

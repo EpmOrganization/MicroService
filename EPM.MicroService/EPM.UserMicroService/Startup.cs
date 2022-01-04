@@ -61,7 +61,7 @@ namespace EPM.UserMicroService
                 app.UseDeveloperExceptionPage();
             }
 
-
+            ServiceLocator.ApplicationBuilder = app;
             app.UseConsul();
             app.UseHttpsRedirection();
 

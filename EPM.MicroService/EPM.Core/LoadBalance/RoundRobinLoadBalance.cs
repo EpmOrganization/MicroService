@@ -24,7 +24,9 @@ namespace EPM.Core.LoadBalance
                 {
                     _index = 0;
                 }
-                return serviceUrls[_index];
+                var serviceUrl = serviceUrls[_index];
+                _index++;
+                return serviceUrl;
             }
         }
     }

@@ -30,12 +30,12 @@ namespace EPM.ApiGateway
         public void ConfigureServices(IServiceCollection services)
         {
             // 添加Ocelot
-            //var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelot.json", false, true).Build();
-            //services.AddOcelot(config);
+            var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelot.json", false, true).Build();
+            services.AddOcelot(config);
 
             // 添加Ocelot结合Consul服务发现
-            var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelotconsul.json", false, true).Build();
-            services.AddOcelot(config).AddConsul();
+            //var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelotconsul.json", false, true).Build();
+            //services.AddOcelot(config).AddConsul();
             services.AddControllers();
         }
 

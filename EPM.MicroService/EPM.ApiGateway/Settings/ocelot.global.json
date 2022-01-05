@@ -3,6 +3,11 @@
   "GlobalConfiguration": {
     // 路由是否区分大小写
     "ReRouteIsCaseSensitive": false,
-    "DownstreamScheme": "http"
+    // 服务发现
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul" // 由consul提供服务发现
+    }
   }
 }

@@ -30,7 +30,7 @@ namespace EPM.ApiGateway
                            .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                            .AddJsonFile("appsettings.json", true, true)
                           .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-                          // 添加Settings文件夹下面的ocelot配置，会自动合并
+                          // 添加Settings文件夹下面的ocelot配置，调用Ocelot封装的文件合并 
                           .AddOcelot(Path.Combine(AppContext.BaseDirectory, "Settings"), hostingContext.HostingEnvironment)
                          .AddEnvironmentVariables();
                   });

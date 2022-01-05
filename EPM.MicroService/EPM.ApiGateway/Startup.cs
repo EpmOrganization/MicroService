@@ -1,3 +1,4 @@
+using EPM.ApiGateway.OcelotExtension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,10 @@ namespace EPM.ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOcelot();
+            // ocelot结合服务发现
+            services.AddOcelot().AddConsul().AddCustomLoadBalancer();//自定义负载均衡策略;
+
+            //services.AddOcelot().AddConsul();//自定义负载均衡策略;
             services.AddControllers();
         }
 

@@ -57,7 +57,7 @@
       // 上游（客户端，服务消费方）请求路由模板
       "UpstreamPathTemplate": "/dept/post/{path}",
       // 负载均衡，只有上面匹配了集群才有效
-      "LoadBalanceOptions": {
+      "LoadBalancerOptions": {
         "Type": "RoundRobin" // 轮询
       }
     },
@@ -87,7 +87,7 @@
       // 上游（客户端，服务消费方）请求路由模板
       "UpstreamPathTemplate": "/dept/put/{path}",
       // 负载均衡，只有上面匹配了集群才有效
-      "LoadBalanceOptions": {
+      "LoadBalancerOptions": {
         "Type": "RoundRobin" // 轮询
       }
     },
@@ -117,7 +117,7 @@
       // 上游（客户端，服务消费方）请求路由模板
       "UpstreamPathTemplate": "/dept/delete/{path}",
       // 负载均衡，只有上面匹配了集群才有效
-      "LoadBalanceOptions": {
+      "LoadBalancerOptions": {
         "Type": "RoundRobin" // 轮询
       }
     }

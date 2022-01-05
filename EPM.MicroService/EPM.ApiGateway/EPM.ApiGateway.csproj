@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="ocelot.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Settings\user.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>user.Designer.cs</LastGenOutput>

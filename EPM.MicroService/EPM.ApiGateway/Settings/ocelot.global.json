@@ -1,0 +1,8 @@
+{
+  // 全局配置，此节点的配置会覆盖ReRoutes，可以在这里设置一些通用的配置
+  "GlobalConfiguration": {
+    // 路由是否区分大小写
+    "ReRouteIsCaseSensitive": false,
+    "DownstreamScheme": "http"
+  }
+}

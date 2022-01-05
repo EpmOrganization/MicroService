@@ -20,22 +20,20 @@ namespace EPM.ApiGateway
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            //.ConfigureAppConfiguration((hostingContext, config) => 
-            //{
-            //    config.AddOcelot()
-            //             .AddEnvironmentVariables();
-            //})
+
               .ConfigureWebHostDefaults(webBuilder =>
               {
-                  webBuilder.ConfigureAppConfiguration((context, builder) =>
+                  webBuilder.UseStartup<Startup>();
+                  webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
                   {
-                      var files = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Settings"), "ocelot.*.json");
-                      foreach (var file in files)
-                      {
-                          builder.AddJsonFile(file, false, true);
-                      }
-                   
-                  }).UseStartup<Startup>();
+                      config
+                           .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                           .AddJsonFile("appsettings.json", true, true)
+                          .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                          // 添加Settings文件夹下面的ocelot配置，会自动合并
+                          .AddOcelot(Path.Combine(AppContext.BaseDirectory, "Settings"), hostingContext.HostingEnvironment)
+                         .AddEnvironmentVariables();
+                  });
               });
     }
 }

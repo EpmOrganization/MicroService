@@ -5,18 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Settings\ocelot.dept.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Settings\ocelot.dept.json">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>dept.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Ocelot" Version="14.1.0" />
     <PackageReference Include="Ocelot.Provider.Consul" Version="14.1.0" />
   </ItemGroup>
@@ -27,12 +15,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>dept.settings.json</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Settings\ocelot.user.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

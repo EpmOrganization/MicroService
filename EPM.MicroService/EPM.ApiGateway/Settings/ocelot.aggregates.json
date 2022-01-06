@@ -1,0 +1,12 @@
+{
+  // ╬ш╨об╥си
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "RoleAggr",
+        "PermissionAggr"
+      ],
+      "UpstreamPathTemplate": "/getroledetailaggr"
+    }
+  ]
+}

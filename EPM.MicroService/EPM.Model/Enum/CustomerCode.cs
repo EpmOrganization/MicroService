@@ -17,6 +17,9 @@ namespace EPM.Model.Enum
         Fail = 0,
 
         [Description("该用户已存在")]
-        UserIsExist = 1001
+        UserIsExist = 1001,
+
+             [Description("该菜单已存在")]
+        MenuIsExist = 1001
     }
 }

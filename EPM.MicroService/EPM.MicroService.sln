@@ -36,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PollyDemo", "PollyDemo\Poll
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{CBE5DD2D-D5CA-4B13-B88C-B25C29FC453C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.ApiGateway", "EPM.ApiGateway\EPM.ApiGateway.csproj", "{B2C82B4C-237E-465E-ABA3-E93746D0A30B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPM.ApiGateway", "EPM.ApiGateway\EPM.ApiGateway.csproj", "{B2C82B4C-237E-465E-ABA3-E93746D0A30B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.PermissionMicroService", "EPM.PermissionMicroService\EPM.PermissionMicroService.csproj", "{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{B2C82B4C-237E-465E-ABA3-E93746D0A30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2C82B4C-237E-465E-ABA3-E93746D0A30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2C82B4C-237E-465E-ABA3-E93746D0A30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{81E6486E-19EF-4AAD-83E1-A1F8A19A7235} = {C3750A86-2596-49CE-9E25-5ED87BA2CCBF}
 		{CBE5DD2D-D5CA-4B13-B88C-B25C29FC453C} = {E88E15A0-C752-442D-BF4B-5E7B94D73414}
 		{B2C82B4C-237E-465E-ABA3-E93746D0A30B} = {CBE5DD2D-D5CA-4B13-B88C-B25C29FC453C}
+		{8638DA7F-A33D-459B-AF99-81FD3D0E9C5F} = {5251AA80-824E-441F-AFFC-80E67B93EEA3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13964F51-2AEB-4E30-B78A-01079CF18735}

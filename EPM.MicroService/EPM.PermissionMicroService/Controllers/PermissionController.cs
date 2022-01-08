@@ -1,7 +1,6 @@
 ﻿using EPM.Model.ApiModel;
 using EPM.Model.DbModel;
-using EPM.Model.Dto.Response.UserResponse;
-using EPM.UserMicroService.Service;
+using EPM.PermissionMicroService.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,27 +8,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EPM.UserMicroService.Controllers
+namespace EPM.PermissionMicroService.Controllers
 {
-    /// <summary>
-    /// 用户控制器
-    /// </summary>
-    [Route("api/user")]
+    [Route("api/permission")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class PermissionController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly IPermissionService _service;
 
-        public UserController(IUserService service)
+        public PermissionController(IPermissionService service)
         {
             _service = service;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<ApiResponseWithData<List<User>>>> Get()
+        public async Task<ActionResult<ApiResponseWithData<List<Menu>>>> Get()
         {
-            ApiResponseWithData<List<User>> result = new ApiResponseWithData<List<User>>().Success();
+            ApiResponseWithData<List<Menu>> result = new ApiResponseWithData<List<Menu>>().Success();
 
             var responseDto = await _service.GetListAsync();
             if (responseDto != null)
@@ -47,24 +43,24 @@ namespace EPM.UserMicroService.Controllers
         /// <summary>
         /// 新增用户
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="Menu"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] User user)
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] Menu menu)
         {
-            ValidateResult validateResult = await _service.AddAsync(user);
+            ValidateResult validateResult = await _service.AddAsync(menu);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
 
         /// <summary>
         /// 修改用户信息
         /// </summary>
-        /// <param name="user">用户实体</param>
+        /// <param name="Menu">用户实体</param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult<ApiResponse>> Put([FromBody] User user)
+        public async Task<ActionResult<ApiResponse>> Put([FromBody] Menu menu)
         {
-            ValidateResult validateResult = await _service.UpdateAsync(user);
+            ValidateResult validateResult = await _service.UpdateAsync(menu);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
 
@@ -80,6 +76,5 @@ namespace EPM.UserMicroService.Controllers
             ValidateResult validateResult = await _service.DeleteAsync(id);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
-
     }
 }

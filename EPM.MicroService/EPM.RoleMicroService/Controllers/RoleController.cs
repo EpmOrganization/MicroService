@@ -1,7 +1,6 @@
 ﻿using EPM.Model.ApiModel;
 using EPM.Model.DbModel;
-using EPM.Model.Dto.Response.UserResponse;
-using EPM.UserMicroService.Service;
+using EPM.RoleMicroService.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,27 +8,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EPM.UserMicroService.Controllers
+namespace EPM.RoleMicroService.Controllers
 {
-    /// <summary>
-    /// 用户控制器
-    /// </summary>
-    [Route("api/user")]
+    [Route("api/role")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class RoleController : ControllerBase
     {
-        private readonly IUserService _service;
+        private readonly IRoleService _service;
 
-        public UserController(IUserService service)
+        public RoleController(IRoleService service)
         {
             _service = service;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<ApiResponseWithData<List<User>>>> Get()
+        public async Task<ActionResult<ApiResponseWithData<List<Role>>>> Get()
         {
-            ApiResponseWithData<List<User>> result = new ApiResponseWithData<List<User>>().Success();
+            ApiResponseWithData<List<Role>> result = new ApiResponseWithData<List<Role>>().Success();
 
             var responseDto = await _service.GetListAsync();
             if (responseDto != null)
@@ -45,34 +41,34 @@ namespace EPM.UserMicroService.Controllers
         }
 
         /// <summary>
-        /// 新增用户
+        /// 新增角色
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="Role"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> Post([FromBody] User user)
+        public async Task<ActionResult<ApiResponse>> Post([FromBody] Role Role)
         {
-            ValidateResult validateResult = await _service.AddAsync(user);
+            ValidateResult validateResult = await _service.AddAsync(Role);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
 
         /// <summary>
-        /// 修改用户信息
+        /// 修改角色信息
         /// </summary>
-        /// <param name="user">用户实体</param>
+        /// <param name="Role">角色实体</param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult<ApiResponse>> Put([FromBody] User user)
+        public async Task<ActionResult<ApiResponse>> Put([FromBody] Role Role)
         {
-            ValidateResult validateResult = await _service.UpdateAsync(user);
+            ValidateResult validateResult = await _service.UpdateAsync(Role);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
 
 
         /// <summary>
-        /// 删除用户
+        /// 删除角色
         /// </summary>
-        /// <param name="id">用户id</param>
+        /// <param name="id">角色id</param>
         /// <returns></returns>
         [HttpDelete]
         public async Task<ActionResult<ApiResponse>> Delete(Guid id)
@@ -80,6 +76,5 @@ namespace EPM.UserMicroService.Controllers
             ValidateResult validateResult = await _service.DeleteAsync(id);
             return validateResult.Code > 0 ? ApiResponse.Success() : ApiResponse.Fail();
         }
-
     }
 }

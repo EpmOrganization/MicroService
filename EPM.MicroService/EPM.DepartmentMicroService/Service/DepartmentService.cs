@@ -71,7 +71,7 @@ namespace EPM.DepartmentMicroService.Service
             // 获取所有有效的部门
             var allListMenu = await _repository.GetAllListAsync(p => p.IsDeleted == (int)DeleteFlag.NotDeleted);
             // 获取父级菜单
-            var parentList = allListMenu.Where(p => p.ParentID == null);
+            var parentList = allListMenu.Where(p => p.ParentID == null || p.ParentID == Guid.Empty);
             List<DeptResponseDto> list = new List<DeptResponseDto>();
             // 遍历父级节点
             foreach (var node in parentList)

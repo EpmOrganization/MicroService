@@ -1,5 +1,0 @@
-{
-  "ConsulAddress": "http://localhost:8500",
-  "ServiceName": "RoleService",
-  "HealthCheckAddress": "/api/role/HealthCheck"
-}

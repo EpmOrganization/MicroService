@@ -4,11 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EPM.UserMicroService
 {
-    public class ServiceLocator
+    /// <summary>
+    /// 服务定位器
+    /// </summary>
+    public static class ServiceLocator
     {
-        public static IApplicationBuilder ApplicationBuilder()
-        {
-           return ServiceFactory.ServiceProvider.GetService<IApplicationBuilder>();
-        }
+        public static IApplicationBuilder ApplicationBuilder { get; set; }
     }
 }

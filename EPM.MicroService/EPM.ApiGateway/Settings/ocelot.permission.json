@@ -1,0 +1,24 @@
+{
+  // 转发路由，数组中的每个元素都是某个服务的一组路由转发规则
+  "ReRoutes": [
+    // 发生get请求获取数据
+    {
+      // 下游（服务提供方）服务路由模板  path就是要替换的
+      "DownstreamPathTemplate": "/api/permission",
+      // uri方案 http https
+      "DownstreamScheme": "http",
+      // 服务名称，使用consul服务发现
+      "ServiceName": "PermissionService",
+      // 允许的HTTP请求方法，可以写多个
+      "UpstreamHttpMethod": [ "Get" ],
+      // 聚合
+      "Key": "PermissionAggr",
+      // 上游（客户端，服务消费方）请求路由模板
+      "UpstreamPathTemplate": "/permission/get/{path}",
+      // 负载均衡，只有上面匹配了集群才有效
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" // 轮询
+      }
+    }
+  ]
+}

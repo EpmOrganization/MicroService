@@ -10,12 +10,12 @@ namespace EPM.Model.DbModel
 		/// <summary>
 		/// 菜单名称
 		/// </summary>
-		public string Name { get; set; }
+		public string? Name { get; set; }
 
 		/// <summary>
 		/// 菜单对应路由
 		/// </summary>
-		public string Value { get; set; }
+		public string? Value { get; set; }
 
 		/// <summary>
 		/// 父级权限编号
@@ -35,6 +35,6 @@ namespace EPM.Model.DbModel
 		/// <summary>
 		/// 父级
 		/// </summary>
-		public string ParentList { get; set; }
+		public string? ParentList { get; set; }
 	}
 }

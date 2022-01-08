@@ -1,4 +1,5 @@
 ﻿using EPM.Core.Discovery;
+using EPM.Core.LoadBalance;
 using EPM.Core.ServiceBase;
 using EPM.Model.ApiModel;
 using EPM.Model.ConfigModel;
@@ -31,7 +32,11 @@ namespace EPM.Console
             services.AddSingleton(configuration);
             services.Configure<ServiceDiscoveryConfig>(configuration.GetSection("ConsulDiscovery"));
 
-            services.AddScoped<IServiceDiscovery, ConsulServiceDiscovery>();
+            services.AddSingleton<IServiceDiscovery, ConsulServiceDiscovery>();
+            // 使用轮询实现负载均衡
+            //services.AddSingleton<ILoadBalance, RoundRobinLoadBalance>();
+            // 随机数
+            services.AddSingleton<ILoadBalance, RandomLoadBalance>();
 
             ServiceFactory.Services = services;
 
@@ -41,10 +46,14 @@ namespace EPM.Console
 
                 var discover = serviceProvider.GetService<IServiceDiscovery>();
                 List<ServiceUrl> list = await  discover.Discovery("UserService");
-                foreach (ServiceUrl url in list)
+                // 测试负载均衡
+                ILoadBalance loadBalance = serviceProvider.GetService<ILoadBalance>();
+                for (int i = 0; i < 20; i++)
                 {
-                    System.Console.WriteLine(url.Url);
+                    var url = loadBalance.Select(list);
+                    System.Console.WriteLine($"current url is:{url.Url}");
                 }
+
 
             }
 

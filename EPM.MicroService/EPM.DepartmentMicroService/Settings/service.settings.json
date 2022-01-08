@@ -1,0 +1,7 @@
+{
+  "ConsulRegistry": {
+    "ConsulAddress": "http://localhost:8500",
+    "ServiceName": "DepartmentService",
+    "HealthCheckAddress": "/api/department/HealthCheck"
+  }
+}

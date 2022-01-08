@@ -8,11 +8,27 @@
       // uri方案 http https
       "DownstreamScheme": "http",
       // 允许的HTTP请求方法，可以写多个
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamHttpMethod": [ "Get" ],
       // 上游（客户端，服务消费方）请求路由模板
-      "UpstreamPathTemplate": "/a/{path}",
+      "UpstreamPathTemplate": "/userservice/get/{path}",
       // 负载均衡，只有上面匹配了集群才有效
-      "LoadBalanceOptions": {
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" // 轮询
+      }
+    },
+    // 新增用户配置
+    {
+      "ServiceName": "UserService",
+      // 下游（服务提供方）服务路由模板  path就是要替换的
+      "DownstreamPathTemplate": "/api/{path}",
+      // uri方案 http https
+      "DownstreamScheme": "http",
+      // 允许的HTTP请求方法，可以写多个
+      "UpstreamHttpMethod": [ "Post" ],
+      // 上游（客户端，服务消费方）请求路由模板
+      "UpstreamPathTemplate": "/userservice/post/{path}",
+      // 负载均衡，只有上面匹配了集群才有效
+      "LoadBalancerOptions": {
         "Type": "RoundRobin" // 轮询
       }
     }

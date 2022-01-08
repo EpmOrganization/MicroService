@@ -1,8 +1,8 @@
 using EPM.Core.Registry;
 using EPM.Core.ServiceBase;
-using EPM.UserMicroService.Context;
-using EPM.UserMicroService.Repositories;
-using EPM.UserMicroService.Service;
+using EPM.PermissionMicroService.Context;
+using EPM.PermissionMicroService.Repositories;
+using EPM.PermissionMicroService.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EPM.UserMicroService
+namespace EPM.PermissionMicroService
 {
     public class Startup
     {
@@ -40,17 +40,17 @@ namespace EPM.UserMicroService
             #endregion
 
             #region 注入服务
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
             #endregion
 
-            
+
             services.AddControllers();
             // 添加consul注册中心，加载配置
             services.AddConsul(Configuration);
 
             ServiceFactory.Services = services;
-
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +61,6 @@ namespace EPM.UserMicroService
                 app.UseDeveloperExceptionPage();
             }
 
-            ServiceLocator.ApplicationBuilder = app;
             app.UseConsul();
             app.UseHttpsRedirection();
 

@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
-namespace EPM.DepartmentMicroService.Controllers
+namespace EPM.RoleMicroService.Controllers
 {
     /// <summary>
     /// 健康检查
     /// </summary>
-    [Route("api/department/HealthCheck")]
+    [Route("api/role/HealthCheck")]
     [ApiController]
     public class HealthCheckController : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("DepartService is ok");
+            //Console.WriteLine("UserService is ok");
+            return Ok("RoleService is ok");
         }
     }
 }

@@ -1,3 +1,4 @@
+using EPM.ApiGateway.OcelotExtension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,13 +30,10 @@ namespace EPM.ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // 添加Ocelot
-            //var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelot.json", false, true).Build();
-            //services.AddOcelot(config);
+            // ocelot结合服务发现
+            services.AddOcelot().AddConsul().AddCustomLoadBalancer();//自定义负载均衡策略;
 
-            // 添加Ocelot结合Consul服务发现
-            var config = new ConfigurationBuilder().AddJsonFile($"{Path.Combine(AppContext.BaseDirectory)}/Settings/ocelotconsul.json", false, true).Build();
-            services.AddOcelot(config).AddConsul();
+            //services.AddOcelot().AddConsul();//自定义负载均衡策略;
             services.AddControllers();
         }
 
@@ -49,6 +47,8 @@ namespace EPM.ApiGateway
 
             // 配置Ocelot中间件
             app.UseOcelot().Wait();
+
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

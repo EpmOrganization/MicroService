@@ -55,6 +55,7 @@ namespace EPM.DepartmentMicroService
                 app.UseDeveloperExceptionPage();
             }
 
+            // 使用consul中间件
             app.UseConsul();
             app.UseHttpsRedirection();
 

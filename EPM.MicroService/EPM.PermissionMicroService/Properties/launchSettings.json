@@ -4,12 +4,12 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:27325",
-      "sslPort": 44340
+      "applicationUrl": "http://localhost:49542",
+      "sslPort": 44374
     }
   },
   "profiles": {
-    "EPM.ApiGateway": {
+    "EPM.PermissionMicroService": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

@@ -1,6 +1,7 @@
 ﻿using Consul;
 using EPM.Core.Discovery;
 using EPM.Core.HttpClientConsul;
+using EPM.Core.HttpClientPolly;
 using EPM.Core.LoadBalance;
 using EPM.Core.ServiceBase;
 using EPM.Model.ApiModel;
@@ -116,6 +117,14 @@ namespace EPM.MVCClient.Controllers
             #region consul结合api网关
             List<User> list = new List<User>();
             ApiGatewayConfig apiGatewayConfig = ServiceFactory.ServiceProvider.GetService<IOptions<ApiGatewayConfig>>().Value;
+            //var result= await PolicyBuilder.CreatePolly().ExecuteAsync(async () => 
+
+            //{
+            //    string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
+            //    var result = await _consulHttpClient.GetByGatewayAsync<ApiResponseWithData<List<User>>>(url);
+            //    return result;
+            //});
+
             string url = $"{apiGatewayConfig.ApiGateWay}{apiGatewayConfig.UserMethodConfig.GetUser}";
             var result = await _consulHttpClient.GetByGatewayAsync<ApiResponseWithData<List<User>>>(url);
             if (result != null)

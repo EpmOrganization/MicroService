@@ -1,0 +1,34 @@
+{
+  "IdentityServerConfig": {
+    "ApiScopes": [
+      {
+        "Name": "UserService",
+        "DisplayName": "UserService api需要被保护"
+      },
+      {
+        "Name": "RoleService",
+        "DisplayName": "RoleService api需要被保护"
+      },
+      {
+        "Name": "DepartmentService",
+        "DisplayName": "DepartmentService api需要被保护"
+      },
+      {
+        "Name": "PermissionService",
+        "DisplayName": "PermissionService api需要被保护"
+      }
+    ],
+    // 客户端
+    "Clients": [
+      {
+        "ClientId": "mark",
+        // 用于认证的密码
+        "ClientSecrets": [ "markjiang7m2" ],
+        // client认证模式
+        "AllowedGrantTypes": "ClientCredentials",
+        // 客户端有权访问的范围
+        "AllowedScopes": [ "UserService", "RoleService", "DepartmentService", "PermissionService" ]
+      }
+    ]
+  }
+}
